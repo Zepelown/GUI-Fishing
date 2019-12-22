@@ -1,5 +1,5 @@
 name: FishingMiniGame
-version: ${project.version}
+version: 1.0-SNAPSHOT
 main: io.github.zepelown.main.Main
 api-version: 1.13
 depend: [SmartInvs]

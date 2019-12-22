@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="FishingPlugin:jar">
+    <output-path>$USER_HOME$/Desktop/1.15/plugins</output-path>
+    <root id="archive" name="FishingPlugin.jar">
+      <element id="module-output" name="FishingPlugin" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/fr/minuskube/inv/smart-invs/1.2.7/smart-invs-1.2.7.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

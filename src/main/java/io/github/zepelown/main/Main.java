@@ -1,5 +1,6 @@
 package io.github.zepelown.main;
 
+import io.github.zepelown.event.FishingEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Main extends JavaPlugin {
@@ -8,6 +9,7 @@ public final class Main extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
         getLogger().info("On Enable is called");
+        getServer().getPluginManager().registerEvents(new FishingEvent(), this);
     }
 
     @Override
