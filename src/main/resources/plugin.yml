@@ -1,0 +1,4 @@
+name: TestPlugin
+version: ${project.version}
+main: io.github.zepelown.main.Main
+api-version: 1.13
