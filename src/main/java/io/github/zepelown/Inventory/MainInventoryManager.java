@@ -2,6 +2,7 @@ package io.github.zepelown.Inventory;
 
 import fr.minuskube.inv.ClickableItem;
 import fr.minuskube.inv.content.InventoryContents;
+import fr.minuskube.inv.content.SlotIterator;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -112,10 +113,27 @@ public class MainInventoryManager implements fr.minuskube.inv.content.InventoryP
                 control_MainGame_Class(player, Oak_Log, contents);
             }
         }));
+
+        contents.newIterator("timer", SlotIterator.Type.HORIZONTAL, 5, 0);
     }
 
     @Override
     public void update(Player player, InventoryContents contents) {
+        int state = contents.property("state", 0);
+        contents.setProperty("state", state + 1);
+
+        if(state % 25 != 0)
+            return;
+
+        SlotIterator timer = contents.iterator("timer").get();
+
+        if(timer.column() > 6) {
+            player.closeInventory();
+            return;
+        }
+
+
+        timer.set(ClickableItem.empty(new ItemStack(Material.RED_STAINED_GLASS_PANE))).next();
     }
 
     public void control_MainGame_Class(Player player, ItemStack item, InventoryContents contents) {

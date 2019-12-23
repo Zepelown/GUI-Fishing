@@ -16,7 +16,9 @@ public class FishingEvent implements Listener {
         Player p = e.getPlayer();
         if(e.getState().equals(CAUGHT_FISH) || e.getState().equals(CAUGHT_ENTITY)) {
             p.sendMessage("hou");
-            InventoryList.MainInventory.open(p);
+            InventoryList il = new InventoryList();
+            il.add(p);
+            il.MainInventory.open(p);
             e.setCancelled(true);
         }
     }

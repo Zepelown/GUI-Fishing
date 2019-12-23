@@ -5,11 +5,12 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class MainGame {
     private HashMap<Player, Integer> end_count = new HashMap<Player, Integer>();
     public ArrayList<HashMap<Player, ItemStack>> current_item_list= new ArrayList<>();
-
+    Iterator<HashMap<Player, ItemStack>> it = current_item_list.iterator();
 
     public void add_ItemStack(Player player, ItemStack item) {
         HashMap<Player, ItemStack> temp = new HashMap<>();
@@ -59,5 +60,19 @@ public class MainGame {
             return true;
         } else
             return false;
+    }
+
+    public void clear_game_data(Player p) {
+        if(end_count.containsKey(p)){
+            end_count.remove(p);
+            p.sendMessage("end_count 데이터가 제거되었습니다.");
+        }
+        while(it.hasNext()) {
+            if(it.next().containsKey(p)){
+                it.remove();
+                p.sendMessage("정상적으로 데이터 하나가 제거되었습니다.");
+            }
+
+        }
     }
 }
