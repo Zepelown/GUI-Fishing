@@ -2,23 +2,37 @@ package io.github.zepelown.Inventory;
 
 import fr.minuskube.inv.InventoryListener;
 import fr.minuskube.inv.SmartInventory;
-import io.github.zepelown.event.InventoryEvent;
+import io.github.zepelown.main.MainGame;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 
 import java.util.HashMap;
-import java.util.List;
 
 public class InventoryList implements Listener {
-    private HashMap<Player, Boolean> in_gamemode = new HashMap<>();
+    private static HashMap<Player, Boolean> in_gamemode = new HashMap<>();
     public static SmartInventory MainInventory = SmartInventory.builder()
             .id("MainInventory")
             .provider(new MainInventoryManager())
             .size(6, 9)
             .title(ChatColor.RED + "메인 게임 페이지")
+            .listener(new InventoryListener<InventoryCloseEvent>(InventoryCloseEvent.class, (e) -> {
+                InventoryList il = new InventoryList();
+                MainGame mg = new MainGame();
+                Player player = (Player) e.getPlayer();
+                MainInventoryManager  MI = new MainInventoryManager();
+
+                mg.clear_game_data(player);
+                player.sendMessage("게임이 끝났습니다.");
+                il.remove_in_gamemode_hashmap(player);
+                //보상
+                if(MI.check_Complete_Game(player)) {
+                    player.sendMessage("물고기를 잡았습니다!");
+                } else {
+                    player.sendMessage("물고기를 잡는데 실패했습니다!");
+                }
+            }))
             .closeable(true)
             .build();
 

@@ -1,4 +1,4 @@
-package io.github.zepelown.Inventory;
+package io.github.zepelown.main;
 
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -8,8 +8,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 public class MainGame {
-    private HashMap<Player, Integer> end_count = new HashMap<Player, Integer>();
-    public ArrayList<HashMap<Player, ItemStack>> current_item_list= new ArrayList<>();
+    private static HashMap<Player, Integer> end_count = new HashMap<Player, Integer>();
+    public static ArrayList<HashMap<Player, ItemStack>> current_item_list= new ArrayList<>();
     Iterator<HashMap<Player, ItemStack>> it = current_item_list.iterator();
 
     public void add_ItemStack(Player player, ItemStack item) {

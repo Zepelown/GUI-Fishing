@@ -1,7 +1,7 @@
 package io.github.zepelown.main;
 
+import io.github.zepelown.Inventory.InventoryList;
 import io.github.zepelown.event.FishingEvent;
-import io.github.zepelown.event.InventoryEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Main extends JavaPlugin {
@@ -11,7 +11,7 @@ public final class Main extends JavaPlugin {
         // Plugin startup logic
         getLogger().info("On Enable is called");
         getServer().getPluginManager().registerEvents(new FishingEvent(), this);
-        getServer().getPluginManager().registerEvents(new InventoryEvent(), this);
+        getServer().getPluginManager().registerEvents(new InventoryList(), this);
     }
 
     @Override

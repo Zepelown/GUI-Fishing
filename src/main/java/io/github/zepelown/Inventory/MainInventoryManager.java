@@ -3,10 +3,13 @@ package io.github.zepelown.Inventory;
 import fr.minuskube.inv.ClickableItem;
 import fr.minuskube.inv.content.InventoryContents;
 import fr.minuskube.inv.content.SlotIterator;
+import io.github.zepelown.main.MainGame;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Random;
 
 public class MainInventoryManager implements fr.minuskube.inv.content.InventoryProvider {
@@ -17,6 +20,10 @@ public class MainInventoryManager implements fr.minuskube.inv.content.InventoryP
     ItemStack BedRock = new ItemStack(Material.BEDROCK);
     ItemStack Oak_Log = new ItemStack(Material.OAK_LOG);
     ItemStack Stone = new ItemStack(Material.STONE);
+
+    private static HashMap<Player, Boolean> Complete_Game = new HashMap<>();
+
+    Iterator<Player> Complete_game_Ir = Complete_Game.keySet().iterator();
 
     @Override
     public void init(Player player, InventoryContents contents) {
@@ -147,9 +154,20 @@ public class MainInventoryManager implements fr.minuskube.inv.content.InventoryP
         }
 
         if(mg.check_end(player)) {
+            player.sendMessage("물고기를 잡았습니다!!");
+            Complete_Game.put(player, true);
             player.closeInventory();
-            player.sendMessage("게임이 끝났습니다!!");
         }
 
+    }
+
+    public Boolean check_Complete_Game(Player p) {
+        while(Complete_game_Ir.hasNext()) {
+            if(Complete_Game.containsKey(p)) {
+                Complete_Game.remove(p);
+                return true;
+            }
+        }
+        return false;
     }
 }
