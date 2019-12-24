@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Random;
 
+//출처 : https://github.com/MinusKube/SmartInvs
 public class MainInventoryManager implements fr.minuskube.inv.content.InventoryProvider {
 
     MainGame mg = new MainGame();
@@ -138,7 +139,6 @@ public class MainInventoryManager implements fr.minuskube.inv.content.InventoryP
             player.closeInventory();
             return;
         }
-
 
         timer.set(ClickableItem.empty(new ItemStack(Material.RED_STAINED_GLASS_PANE))).next();
     }
