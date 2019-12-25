@@ -32,11 +32,11 @@ public class InventoryList implements Listener {
                 //보상
                 if(MI.check_Complete_Game(player)) {
                     player.sendMessage("물고기를 잡았습니다!");
-                    player.getInventory().addItem(fe.get_Hooked_fish(player));
                 } else {
                     player.sendMessage("물고기를 잡는데 실패했습니다!");
+                    fe.remove_Hooked_fish(player);
                 }
-                fe.remove_Hooked_fish(player);
+
 
             }))
             .closeable(true)
@@ -45,7 +45,7 @@ public class InventoryList implements Listener {
     public static SmartInventory ResultInventory = SmartInventory.builder()
             .id("ResultInventory")
             .provider(new ResultInventoryManager())
-            .size(1,9)
+            .size(2,9)
             .title(ChatColor.DARK_AQUA + "결과")
             .closeable(true)
             .build();
