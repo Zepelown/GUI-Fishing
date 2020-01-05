@@ -4,7 +4,7 @@ import fr.minuskube.inv.ClickableItem;
 import fr.minuskube.inv.content.InventoryContents;
 import fr.minuskube.inv.content.SlotIterator;
 import io.github.zepelown.ItemManager.ItemManager;
-import io.github.zepelown.main.MainGame;
+import io.github.zepelown.main.DataManager;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -16,17 +16,17 @@ import java.util.Random;
 //출처 : https://github.com/MinusKube/SmartInvs
 public class MainInventoryManager implements fr.minuskube.inv.content.InventoryProvider {
 
-    MainGame mg = new MainGame();
+    DataManager dm = new DataManager();
     ItemStack Glass = new ItemStack(Material.GLASS);
     ItemStack Grass = new ItemStack(Material.GRASS_BLOCK);
     ItemStack BedRock = new ItemStack(Material.BEDROCK);
     ItemStack Oak_Log = new ItemStack(Material.OAK_LOG);
     ItemStack Stone = new ItemStack(Material.STONE);
 
-    private static HashMap<Player, Boolean> Complete_Game = new HashMap<>();
 
-    Iterator<Player> Complete_game_Ir = Complete_Game.keySet().iterator();
+
     InventoryList il = new InventoryList();
+
 
     @Override
     public void init(Player player, InventoryContents contents) {
@@ -50,6 +50,12 @@ public class MainInventoryManager implements fr.minuskube.inv.content.InventoryP
             }
         }));
 
+        contents.set(5,7,ClickableItem.of(new ItemStack(Material.CHEST), e-> {
+            if(e.isLeftClick()) {
+                dm.print_ArrayList();
+            }
+        }));
+
         for(int x = 0; x < 8; x++) {
             //7줄 처리
             if(x < 2 || x >6) {
@@ -67,23 +73,23 @@ public class MainInventoryManager implements fr.minuskube.inv.content.InventoryP
                 switch (random.nextInt(5) + 1) {
                     case 1:
                         contents.set(1, x + 1, ClickableItem.empty(Glass));
-                        mg.add_ItemStack(player, Glass);
+                        dm.add_ArrayList(player, Glass.getType().toString());
                         break;
                     case 2:
                         contents.set(1, x + 1, ClickableItem.empty(Grass));
-                        mg.add_ItemStack(player, Grass);
+                        dm.add_ArrayList(player, Grass.getType().toString());
                         break;
                     case 3:
                         contents.set(1, x + 1, ClickableItem.empty(Stone));
-                        mg.add_ItemStack(player, Stone);
+                        dm.add_ArrayList(player, Stone.getType().toString());
                         break;
                     case 4:
                         contents.set(1, x + 1, ClickableItem.empty(BedRock));
-                        mg.add_ItemStack(player, BedRock);
+                        dm.add_ArrayList(player, BedRock.getType().toString());
                         break;
                     case 5:
                         contents.set(1, x + 1, ClickableItem.empty(Oak_Log));
-                        mg.add_ItemStack(player, Oak_Log);
+                        dm.add_ArrayList(player, Oak_Log.getType().toString());
                         break;
                 }
             }
@@ -91,30 +97,30 @@ public class MainInventoryManager implements fr.minuskube.inv.content.InventoryP
         }
 
         //눌러야하는 칸 처리
-        contents.set(3, 2, ClickableItem.of(Glass, e -> {
+        contents.set(3, 2, ClickableItem.of(new ItemStack(Material.GLASS), e -> {
             if(e.isLeftClick()) {
-                control_MainGame_Class(player, Glass, contents);
+                control_MainGame_Class(player, Glass.getType(), contents);
             }
                 }));
-        contents.set(3, 3, ClickableItem.of(Grass, e -> {
+        contents.set(3, 3, ClickableItem.of(new ItemStack(Material.GRASS_BLOCK), e -> {
             if(e.isLeftClick()) {
-                control_MainGame_Class(player, Grass, contents);
+                control_MainGame_Class(player, Grass.getType(), contents);
             }
         }));
-        contents.set(3,4,ClickableItem.of(BedRock, e-> {
+        contents.set(3,4,ClickableItem.of(new ItemStack(Material.BEDROCK), e-> {
             if(e.isLeftClick()) {
-                control_MainGame_Class(player, BedRock, contents);
+                control_MainGame_Class(player, BedRock.getType(), contents);
             }
 
         }));
-        contents.set(3, 5, ClickableItem.of(Stone, e -> {
+        contents.set(3, 5, ClickableItem.of(new ItemStack(Material.STONE), e -> {
             if(e.isLeftClick()) {
-                control_MainGame_Class(player, Stone, contents);
+                control_MainGame_Class(player, Stone.getType(), contents);
             }
         }));
-        contents.set(3, 6, ClickableItem.of(Oak_Log, e -> {
+        contents.set(3, 6, ClickableItem.of(new ItemStack(Material.OAK_LOG), e -> {
             if(e.isLeftClick()) {
-                control_MainGame_Class(player, Oak_Log, contents);
+                control_MainGame_Class(player, Oak_Log.getType(), contents);
             }
         }));
 
@@ -131,39 +137,30 @@ public class MainInventoryManager implements fr.minuskube.inv.content.InventoryP
 
         SlotIterator timer = contents.iterator("timer").get();
 
-        if(timer.column() > 7) {
+        int time = timer.column();
+
+        if(time > 7) {
             player.closeInventory();
             return;
         }
 
-        timer.set(ClickableItem.empty(new ItemStack(Material.RED_STAINED_GLASS_PANE))).next();
+        timer.set(ClickableItem.empty(ItemManager.set_Timer(time + 1))).next();
     }
 
-    public void control_MainGame_Class(Player player, ItemStack item, InventoryContents contents) {
-        player.sendMessage(item.getType().toString() + " 를 선택하였습니다.");
-        if(mg.check_ItemStack(player, item)) {
-            mg.remove_ItemStack(player);
+    public void control_MainGame_Class(Player player, Material item, InventoryContents contents) {
+        player.sendMessage(item.toString() + " 를 선택하였습니다.");
+        if(dm.check_and_remove_ArrayList(player, item.toString())) {
             player.sendMessage("제대로 선택하였습니다!");
-            contents.set(1, mg.get_end_count(player), ClickableItem.empty(new ItemStack(Material.AIR)));
+            contents.set(1, dm.get_end_count(player), ClickableItem.empty(new ItemStack(Material.AIR)));
         } else {
             player.sendMessage("다시 선택해주세요!");
         }
 
-        if(mg.check_end(player)) {
-            Complete_Game.put(player, true);
+        if(dm.check_end(player)) {
+            dm.modify_InGame(player, true);
             player.closeInventory();
             il.ResultInventory.open(player);
         }
 
-    }
-
-    public Boolean check_Complete_Game(Player p) {
-        while(Complete_game_Ir.hasNext()) {
-            if(Complete_Game.containsKey(p)) {
-                Complete_Game.remove(p);
-                return true;
-            }
-        }
-        return false;
     }
 }

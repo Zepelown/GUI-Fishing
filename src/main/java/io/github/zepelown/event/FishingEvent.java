@@ -1,6 +1,7 @@
 package io.github.zepelown.event;
 
 import io.github.zepelown.Inventory.InventoryList;
+import io.github.zepelown.main.DataManager;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
@@ -16,7 +17,6 @@ import static org.bukkit.event.player.PlayerFishEvent.State.CAUGHT_FISH;
 
 
 public class FishingEvent implements Listener {
-
     private static HashMap<Player, ItemStack> Hooked_fish_list = new HashMap<>();
     @EventHandler
     public void PlayerFishingEvent(PlayerFishEvent e) {
@@ -25,12 +25,10 @@ public class FishingEvent implements Listener {
         if(e.getState().equals(CAUGHT_FISH) || e.getState().equals(CAUGHT_ENTITY)) {
             Item Hooked_fish_temp = (Item) e.getCaught();
             ItemStack Hooked_fish = Hooked_fish_temp.getItemStack();
-
-            p.sendMessage("hou");
             InventoryList il = new InventoryList();
-            il.add(p);
-            il.MainInventory.open(p);
+
             add_Hooked_fish(p, Hooked_fish);
+            il.MainInventory.open(p);
             e.setCancelled(true);
         }
     }
