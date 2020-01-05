@@ -1,5 +1,6 @@
 package io.github.zepelown.ItemManager;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -35,6 +36,7 @@ public class ItemManager {
 
     public static ItemStack set_Timer(int block_count) {
         double time = block_count * 12.5;
-        return new ItemStack(set_item(time + "%", Material.RED_WOOL, 1, Arrays.asList("빨간색 양털로 가득차면 게임이 끝납니다!!")));
+        return new ItemStack(set_item(time + "%", Material.RED_STAINED_GLASS_PANE, 1,
+                Arrays.asList(ChatColor.RED + "빨간색으로 가득차면 게임이 끝납니다!!")));
     }
 }

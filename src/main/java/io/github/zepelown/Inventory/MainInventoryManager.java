@@ -5,6 +5,7 @@ import fr.minuskube.inv.content.InventoryContents;
 import fr.minuskube.inv.content.SlotIterator;
 import io.github.zepelown.ItemManager.ItemManager;
 import io.github.zepelown.main.DataManager;
+import io.github.zepelown.main.Main;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -139,7 +140,7 @@ public class MainInventoryManager implements fr.minuskube.inv.content.InventoryP
 
         int time = timer.column();
 
-        if(time > 7) {
+        if(time >= 7) {
             player.closeInventory();
             return;
         }
@@ -148,12 +149,11 @@ public class MainInventoryManager implements fr.minuskube.inv.content.InventoryP
     }
 
     public void control_MainGame_Class(Player player, Material item, InventoryContents contents) {
-        player.sendMessage(item.toString() + " 를 선택하였습니다.");
         if(dm.check_and_remove_ArrayList(player, item.toString())) {
-            player.sendMessage("제대로 선택하였습니다!");
+            player.sendMessage(Main.prefix + "제대로 선택하였습니다!");
             contents.set(1, dm.get_end_count(player), ClickableItem.empty(new ItemStack(Material.AIR)));
         } else {
-            player.sendMessage("다시 선택해주세요!");
+            player.sendMessage(Main.prefix + "다시 선택해주세요!");
         }
 
         if(dm.check_end(player)) {
