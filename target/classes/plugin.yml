@@ -3,3 +3,6 @@ version: 1.0-SNAPSHOT
 main: io.github.zepelown.main.Main
 api-version: 1.13
 depend: [SmartInvs]
+commands:
+  openf:
+    description: 임시로 만듬

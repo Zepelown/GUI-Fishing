@@ -1,23 +1,21 @@
-package io.github.zepelown.Inventory;
+package io.github.zepelown.inventory;
 
 import fr.minuskube.inv.ClickableItem;
 import fr.minuskube.inv.content.InventoryContents;
 import fr.minuskube.inv.content.SlotIterator;
-import io.github.zepelown.ItemManager.ItemManager;
-import io.github.zepelown.main.DataManager;
+import io.github.zepelown.ItemManager;
+import io.github.zepelown.GameData.SecondGameDataManager;
 import io.github.zepelown.main.Main;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Random;
 
 //출처 : https://github.com/MinusKube/SmartInvs
-public class MainInventoryManager implements fr.minuskube.inv.content.InventoryProvider {
+public class SecondGameInventoryManager implements fr.minuskube.inv.content.InventoryProvider {
 
-    DataManager dm = new DataManager();
+    SecondGameDataManager dm = new SecondGameDataManager();
     ItemStack Glass = new ItemStack(Material.GLASS);
     ItemStack Grass = new ItemStack(Material.GRASS_BLOCK);
     ItemStack BedRock = new ItemStack(Material.BEDROCK);

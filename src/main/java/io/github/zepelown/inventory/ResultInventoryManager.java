@@ -1,12 +1,11 @@
-package io.github.zepelown.Inventory;
+package io.github.zepelown.inventory;
 
 import fr.minuskube.inv.ClickableItem;
 import fr.minuskube.inv.content.InventoryContents;
-import io.github.zepelown.ItemManager.ItemManager;
+import io.github.zepelown.ItemManager;
 import io.github.zepelown.event.FishingEvent;
 import io.github.zepelown.main.Main;
 import org.bukkit.Material;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -20,7 +19,7 @@ public class ResultInventoryManager implements fr.minuskube.inv.content.Inventor
         contents.set(0,0, ClickableItem.empty(new ItemStack(Material.OAK_SIGN)));
         contents.set(0,4, ClickableItem.empty(fe.get_Hooked_fish(player)));
 
-        contents.set(1,3,ClickableItem.of(ItemManager.GreenWool, e->{
+        contents.set(1,5,ClickableItem.of(ItemManager.FISHING_ROD, e->{
             if(e.isLeftClick()) {
                 if(e.getInventory().firstEmpty() == -1)
                     player.sendMessage(Main.prefix + "인벤토리가 꽉찼습니다. 인벤토리를 비워주세요.");
@@ -33,7 +32,7 @@ public class ResultInventoryManager implements fr.minuskube.inv.content.Inventor
 
             }
         }));
-        contents.set(1, 5, ClickableItem.of(ItemManager.RedWool, e -> {
+        contents.set(1, 3, ClickableItem.of(ItemManager.BARRIER, e -> {
             if(e.isLeftClick()) {
                 fe.remove_Hooked_fish(player);
                 player.sendMessage(Main.prefix + "잡은 아이템을 버렸습니다!");

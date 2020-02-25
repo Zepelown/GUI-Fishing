@@ -1,28 +1,37 @@
-package io.github.zepelown.Inventory;
+package io.github.zepelown.inventory;
 
 import fr.minuskube.inv.InventoryListener;
 import fr.minuskube.inv.SmartInventory;
 import io.github.zepelown.event.FishingEvent;
-import io.github.zepelown.main.DataManager;
+import io.github.zepelown.GameData.SecondGameDataManager;
 import io.github.zepelown.main.Main;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 
-import java.util.HashMap;
-
 //출처 : https://github.com/MinusKube/SmartInvs
 public class InventoryList implements Listener {
 
-    public static SmartInventory MainInventory = SmartInventory.builder()
-            .id("MainInventory")
-            .provider(new MainInventoryManager())
+    public static SmartInventory FirstGameInventory = SmartInventory.builder()
+            .id("FirstGame")
+            .provider(new FirstGameInventoryManager())
+            .size(3, 9)
+            .title(ChatColor.DARK_AQUA + "첫번째 게임 페이지")
+            .listener(new InventoryListener<InventoryCloseEvent>(InventoryCloseEvent.class, (e) -> {
+
+            }))
+            .closeable(true)
+            .build();
+
+    public static SmartInventory SecondGameInventory = SmartInventory.builder()
+            .id("SecondGame")
+            .provider(new SecondGameInventoryManager())
             .size(6, 9)
-            .title(ChatColor.DARK_AQUA + "메인 게임 페이지")
+            .title(ChatColor.DARK_AQUA + "물고기가 날뜁니다!")
             .listener(new InventoryListener<InventoryCloseEvent>(InventoryCloseEvent.class, (e) -> {
                 InventoryList il = new InventoryList();
-                DataManager dm = new DataManager();
+                SecondGameDataManager dm = new SecondGameDataManager();
                 Player player = (Player) e.getPlayer();
 
                 dm.clear_game_data(player);

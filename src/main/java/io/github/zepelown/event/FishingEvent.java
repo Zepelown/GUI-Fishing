@@ -1,8 +1,6 @@
 package io.github.zepelown.event;
 
-import io.github.zepelown.Inventory.InventoryList;
-import io.github.zepelown.main.DataManager;
-import org.bukkit.entity.Entity;
+import io.github.zepelown.inventory.InventoryList;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -28,7 +26,7 @@ public class FishingEvent implements Listener {
             InventoryList il = new InventoryList();
 
             add_Hooked_fish(p, Hooked_fish);
-            il.MainInventory.open(p);
+            il.SecondGameInventory.open(p);
             e.setCancelled(true);
         }
     }

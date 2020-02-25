@@ -1,4 +1,4 @@
-package io.github.zepelown.main;
+package io.github.zepelown.GameData;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Item;
@@ -8,7 +8,7 @@ import org.bukkit.inventory.ItemStack;
 import java.security.KeyStore;
 import java.util.*;
 
-public class DataManager {
+public class SecondGameDataManager {
     private static HashMap<Player, Integer> end_count = new HashMap<Player, Integer>();
     private static ArrayList<HashMap<Player, String>> current_item_list= new ArrayList<HashMap<Player, String>>();
     private static HashMap<Player, Boolean> InGame = new HashMap<Player, Boolean>();
@@ -43,9 +43,9 @@ public class DataManager {
     }
 
     public void add_end_count(Player p) {
-        if(end_count.get(p) == null)
+        if(end_count.get(p) == null) {
             end_count.put(p, 1);
-        else {
+        } else {
             int former_end_count = end_count.get(p);
             former_end_count++;
             end_count.put(p, former_end_count);

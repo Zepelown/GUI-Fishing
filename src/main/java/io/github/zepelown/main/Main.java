@@ -1,8 +1,8 @@
 package io.github.zepelown.main;
 
-import io.github.zepelown.Inventory.InventoryList;
+import io.github.zepelown.commands.OpenInventory;
+import io.github.zepelown.inventory.InventoryList;
 import io.github.zepelown.event.FishingEvent;
-import net.milkbowl.vault.chat.Chat;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -17,6 +17,7 @@ public final class Main extends JavaPlugin {
         getLogger().info("On Enable is called");
         getServer().getPluginManager().registerEvents(new FishingEvent(), this);
         getServer().getPluginManager().registerEvents(new InventoryList(), this);
+        this.getCommand("openf").setExecutor(new OpenInventory());
     }
 
     @Override
