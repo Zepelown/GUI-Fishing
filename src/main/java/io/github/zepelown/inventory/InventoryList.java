@@ -2,6 +2,7 @@ package io.github.zepelown.inventory;
 
 import fr.minuskube.inv.InventoryListener;
 import fr.minuskube.inv.SmartInventory;
+import io.github.zepelown.GameData.FirstGameDataManager;
 import io.github.zepelown.event.FishingEvent;
 import io.github.zepelown.GameData.SecondGameDataManager;
 import io.github.zepelown.main.Main;
@@ -19,7 +20,15 @@ public class InventoryList implements Listener {
             .size(3, 9)
             .title(ChatColor.DARK_AQUA + "첫번째 게임 페이지")
             .listener(new InventoryListener<InventoryCloseEvent>(InventoryCloseEvent.class, (e) -> {
-
+                Player player = (Player) e.getPlayer();
+                FirstGameDataManager fg = new FirstGameDataManager();
+                if(fg.get_win_game(player)) {
+                    player.sendMessage("첫번째 게임이 성공하여 두번째 게임으로 넘어갑니다.");
+                    InventoryList.SecondGameInventory.open(player);
+                } else {
+                    player.sendMessage("첫번째 게임을 실패하여 종료되었습니다.");
+                }
+                fg.clean_all_first_data(player);
             }))
             .closeable(true)
             .build();

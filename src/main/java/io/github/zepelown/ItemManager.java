@@ -30,6 +30,8 @@ public class ItemManager {
             Material.BLACK_STAINED_GLASS_PANE, 1, Arrays.asList("")));
     public static ItemStack Green_Stained_Glass_Pane = new ItemStack(set_item("제작자 : Zepelown",
             Material.GREEN_STAINED_GLASS_PANE, 1, Arrays.asList("")));
+    public static ItemStack Yellow_Stained_Glass_Pane = new ItemStack(set_item("제작자 : Zepelown",
+            Material.YELLOW_STAINED_GLASS_PANE, 1, Arrays.asList("")));
     public static ItemStack Caught_Fish = new ItemStack(set_item("제작자 : Zepelown",
             Material.SALMON, 1, Arrays.asList("")));
     public static ItemStack Guide_Sign = new ItemStack(set_item("도움말", Material.OAK_SIGN, 1,
