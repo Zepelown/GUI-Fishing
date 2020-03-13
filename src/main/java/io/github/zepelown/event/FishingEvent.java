@@ -25,7 +25,10 @@ public class FishingEvent implements Listener {
             Item Hooked_fish_temp = (Item) e.getCaught();
             ItemStack Hooked_fish = Hooked_fish_temp.getItemStack();
             InventoryList il = new InventoryList();
+            FirstGameDataManager FDataManager = new FirstGameDataManager();
 
+            FDataManager.set_direction(p, "right");
+            FDataManager.set_end_count(p, 0);
             add_Hooked_fish(p, Hooked_fish);
             il.FirstGameInventory.open(p);
             e.setCancelled(true);

@@ -23,10 +23,10 @@ public class InventoryList implements Listener {
                 Player player = (Player) e.getPlayer();
                 FirstGameDataManager fg = new FirstGameDataManager();
                 if(fg.get_win_game(player)) {
-                    player.sendMessage("첫번째 게임이 성공하여 두번째 게임으로 넘어갑니다.");
-                    InventoryList.SecondGameInventory.open(player);
+                    player.sendMessage(Main.prefix + "물고기가 잡히지 않을려고 날뜁니다!");
                 } else {
-                    player.sendMessage("첫번째 게임을 실패하여 종료되었습니다.");
+                    FishingEvent fe = new FishingEvent();
+                    fe.remove_Hooked_fish(player);
                 }
                 fg.clean_all_first_data(player);
             }))

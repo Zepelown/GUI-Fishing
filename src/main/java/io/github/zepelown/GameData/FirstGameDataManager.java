@@ -19,32 +19,12 @@ public class FirstGameDataManager {
         end_count_hashmap.put(player, integer);
     }
 
-    public boolean check_and_remove_end_count(Player player) {
-        if(end_count_hashmap.get(player) == 3) {
-            end_count_hashmap.remove(player);
-            direction.remove(player);
-            return true;
-        }
-        return false;
-    }
-
     public int get_end_count(Player player) {
-        if(end_count_hashmap.get(player) == null)
-            end_count_hashmap.put(player, 1);
         return end_count_hashmap.get(player);
     }
 
-    public void set_direction(Player player) {
-        if(direction.get(player) == null) {
-            direction.put(player, "right");
-            return;
-        }
-
-        if(direction.get(player) == "right") {
-            direction.put(player, "left");
-            return;
-        } else
-            direction.put(player, "right");
+    public void set_direction(Player player,String dir) {
+        direction.put(player, dir);
     }
 
     public String get_direction(Player player) {
@@ -55,11 +35,8 @@ public class FirstGameDataManager {
         return win_game.get(player);
     }
 
-    public void set_win_game(Player player) {
-        if(win_game.get(player) == null)
-            win_game.put(player, true);
-        else if(win_game.get(player))
-            win_game.remove(player);
+    public void set_win_game(Player player, Boolean bool) {
+        win_game.put(player, bool);
     }
 
     public void clean_all_first_data(Player player) {

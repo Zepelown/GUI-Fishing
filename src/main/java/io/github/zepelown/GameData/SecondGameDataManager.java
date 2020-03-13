@@ -43,13 +43,12 @@ public class SecondGameDataManager {
     }
 
     public void add_end_count(Player p) {
-        if(end_count.get(p) == null) {
-            end_count.put(p, 1);
-        } else {
-            int former_end_count = end_count.get(p);
-            former_end_count++;
-            end_count.put(p, former_end_count);
-        }
+        int former_end_count = end_count.get(p);
+        former_end_count++;
+        end_count.put(p, former_end_count);
+    }
+    public void set_default_end_count(Player p) {
+        end_count.put(p, 0);
     }
 
     public int get_end_count(Player p) {
