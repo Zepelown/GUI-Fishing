@@ -32,6 +32,8 @@ public class FirstGameDataManager {
     }
 
     public boolean get_win_game(Player player) {
+        if(win_game.get(player) == null)
+            return false;
         return win_game.get(player);
     }
 
@@ -43,5 +45,20 @@ public class FirstGameDataManager {
         end_count_hashmap.remove(player);
         direction.remove(player);
         win_game.remove(player);
+    }
+
+    public void print_first_data() {
+        System.out.println("------end_count-------");
+        for(Player mapkey : end_count_hashmap.keySet())
+            System.out.println("플레이어 : " + mapkey + " 값 : " + end_count_hashmap.get(mapkey));
+        System.out.println("----------------------");
+        System.out.println("------direction-------");
+        for(Player mapkey : direction.keySet())
+            System.out.println("플레이어 : " + mapkey + " 값 : " + direction.get(mapkey));
+        System.out.println("----------------------");
+        System.out.println("------win_game-------");
+        for(Player mapkey : win_game.keySet())
+            System.out.println("플레이어 : " + mapkey + " 값 : " + win_game.get(mapkey));
+        System.out.println("----------------------");
     }
 }

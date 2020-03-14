@@ -18,7 +18,7 @@ public class InventoryList implements Listener {
             .id("FirstGame")
             .provider(new FirstGameInventoryManager())
             .size(3, 9)
-            .title(ChatColor.DARK_AQUA + "첫번째 게임 페이지")
+            .title(ChatColor.DARK_AQUA + "물고기가 미끼를 물려고 합니다!!!")
             .listener(new InventoryListener<InventoryCloseEvent>(InventoryCloseEvent.class, (e) -> {
                 Player player = (Player) e.getPlayer();
                 FirstGameDataManager fg = new FirstGameDataManager();

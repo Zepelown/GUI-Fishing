@@ -9,6 +9,7 @@ import io.github.zepelown.GameData.SecondGameDataManager;
 import io.github.zepelown.ItemManager;
 import io.github.zepelown.main.Main;
 import org.bukkit.Material;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -27,6 +28,7 @@ public class FirstGameInventoryManager implements InventoryProvider {
             contents.set(2, i, ClickableItem.empty(ItemManager.Black_Stained_Glass_Pane));
             contents.set(2, i+6, ClickableItem.empty(ItemManager.Black_Stained_Glass_Pane));
         }
+        contents.set(2,8, ClickableItem.empty(ItemManager.FirstGame_Guide_Sign));
 
         //획득 버튼 처리
         contents.set(2, 3, ClickableItem.of(ItemManager.FISHING_ROD, e -> {
@@ -49,16 +51,25 @@ public class FirstGameInventoryManager implements InventoryProvider {
         //목표칸 처리
         switch (randomInt) {
             case 1:
-                for(int i = 5; i < 9; i++)
-                    contents.set(1, i, ClickableItem.empty(ItemManager.Caught_Fish));
+                for(int i = 0; i < 9; i++)
+                    if(i >= 5)
+                        contents.set(1, i, ClickableItem.empty(ItemManager.Caught_Fish));
+                    else
+                        contents.set(1,i,ClickableItem.empty(ItemManager.Blue_Stained_Glass_Pane));
                 break;
             case 2:
-                for(int i = 6; i < 9; i++)
-                    contents.set(1, i, ClickableItem.empty(ItemManager.Caught_Fish));
+                for(int i = 0; i < 9; i++)
+                    if(i >= 6)
+                        contents.set(1, i, ClickableItem.empty(ItemManager.Caught_Fish));
+                    else
+                        contents.set(1,i,ClickableItem.empty(ItemManager.Blue_Stained_Glass_Pane));
                 break;
             case 3:
-                for(int i = 7; i < 9; i++)
-                    contents.set(1, i, ClickableItem.empty(ItemManager.Caught_Fish));
+                for(int i = 0; i < 9; i++)
+                    if(i >= 7)
+                        contents.set(1, i, ClickableItem.empty(ItemManager.Caught_Fish));
+                    else
+                        contents.set(1,i,ClickableItem.empty(ItemManager.Blue_Stained_Glass_Pane));
                 break;
         }
         contents.newIterator("Right", SlotIterator.Type.HORIZONTAL, 0,0);
@@ -101,7 +112,6 @@ public class FirstGameInventoryManager implements InventoryProvider {
                 DataManager.set_direction(player, "left");
                 iter_right.set(ClickableItem.empty(ItemManager.Yellow_Stained_Glass_Pane));
                 DataManager.add_end_count(player);
-                System.out.println("오른쪽 사이클 중에 end_count 하나 추가");
                 return;
             }
             iter_right.set(ClickableItem.empty(ItemManager.Yellow_Stained_Glass_Pane)).next();
@@ -118,7 +128,6 @@ public class FirstGameInventoryManager implements InventoryProvider {
                 iter_left.set(ClickableItem.empty(new ItemStack(Material.AIR)));
                 contents.set(0,0,ClickableItem.empty(new ItemStack(Material.AIR)));
                 DataManager.add_end_count(player);
-                System.out.println("왼쪽 사이클 중에 end_count 하나 추가");
                 return;
             }
             iter_left.set(ClickableItem.empty(new ItemStack(Material.AIR))).previous();
@@ -126,14 +135,17 @@ public class FirstGameInventoryManager implements InventoryProvider {
     }
 
     private void check_whether_it_is_selected(Player player, int randomInt, InventoryContents contents) {
-        if (contents.get(0, 4 + randomInt).get().getItem().equals(ItemManager.Yellow_Stained_Glass_Pane)) {
+        if (contents.get(0, 4 + randomInt).isPresent()) {
             DataManager.set_win_game(player, true);
             SecondGameDataManager secondGameDataManager = new SecondGameDataManager();
             secondGameDataManager.set_default_end_count(player);
             player.closeInventory();
             InventoryList il = new InventoryList();
             il.SecondGameInventory.open(player);
-
+        } else {
+            player.sendMessage(Main.prefix + "물고기가 도망가버렸습니다!!");
+            DataManager.set_win_game(player , false);
+            player.closeInventory();
         }
 
     }

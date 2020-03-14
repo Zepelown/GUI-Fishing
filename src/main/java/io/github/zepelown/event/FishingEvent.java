@@ -37,7 +37,6 @@ public class FishingEvent implements Listener {
 
     public void add_Hooked_fish(Player p, ItemStack Hooked_fish) {
         Hooked_fish_list.put(p, Hooked_fish);
-        System.out.println("잡은 물고기 처리 : " + Hooked_fish_list.get(p).toString());
     }
 
     public ItemStack get_Hooked_fish(Player p) {
@@ -46,6 +45,12 @@ public class FishingEvent implements Listener {
 
     public void remove_Hooked_fish(Player p) {
         Hooked_fish_list.remove(p);
-        System.out.println("잡은 물고기 데이터 삭제 완료");
+    }
+
+    public void print_Hooked_fish() {
+        System.out.println("------잡힌 물고기-------");
+        for(Player mapkey : Hooked_fish_list.keySet())
+            System.out.println("플레이어 : " + mapkey + " 값 : " + Hooked_fish_list.get(mapkey));
+        System.out.println("----------------------");
     }
 }

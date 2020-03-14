@@ -42,6 +42,17 @@ public class SecondGameDataManager {
         System.out.println("랜덤 블럭 리스트 불러오기 완료");
     }
 
+    public void print_mapdata() {
+        System.out.println("------Second_end_count-------");
+        for(Player mapkey : end_count.keySet())
+            System.out.println("플레이어 : " + mapkey + " 값 : " + end_count.get(mapkey));
+        System.out.println("----------------------");
+        System.out.println("------Ingame-------");
+        for(Player mapkey : InGame.keySet())
+            System.out.println("플레이어 : " + mapkey + " 값 : " + InGame.get(mapkey));
+        System.out.println("----------------------");
+    }
+
     public void add_end_count(Player p) {
         int former_end_count = end_count.get(p);
         former_end_count++;
@@ -66,7 +77,6 @@ public class SecondGameDataManager {
     public void clear_game_data(Player p) {
         if(end_count.containsKey(p)){
             end_count.remove(p);
-            System.out.println("end_count 데이터가 제거되었습니다.");
         }
 
         ListIterator cil_it2 = current_item_list.listIterator();

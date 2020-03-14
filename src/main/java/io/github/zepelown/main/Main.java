@@ -1,6 +1,6 @@
 package io.github.zepelown.main;
 
-import io.github.zepelown.commands.OpenInventory;
+import io.github.zepelown.commands.Debug;
 import io.github.zepelown.inventory.InventoryList;
 import io.github.zepelown.event.FishingEvent;
 import org.bukkit.ChatColor;
@@ -17,7 +17,7 @@ public final class Main extends JavaPlugin {
         getLogger().info("On Enable is called");
         getServer().getPluginManager().registerEvents(new FishingEvent(), this);
         getServer().getPluginManager().registerEvents(new InventoryList(), this);
-        this.getCommand("openf").setExecutor(new OpenInventory());
+        this.getCommand("gfdebug").setExecutor(new Debug());
     }
 
     @Override

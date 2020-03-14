@@ -16,14 +16,6 @@ import java.util.Random;
 public class SecondGameInventoryManager implements fr.minuskube.inv.content.InventoryProvider {
 
     SecondGameDataManager dm = new SecondGameDataManager();
-    ItemStack Glass = new ItemStack(Material.GLASS);
-    ItemStack Grass = new ItemStack(Material.GRASS_BLOCK);
-    ItemStack BedRock = new ItemStack(Material.BEDROCK);
-    ItemStack Oak_Log = new ItemStack(Material.OAK_LOG);
-    ItemStack Stone = new ItemStack(Material.STONE);
-
-
-
     InventoryList il = new InventoryList();
 
 
@@ -43,17 +35,7 @@ public class SecondGameInventoryManager implements fr.minuskube.inv.content.Inve
         contents.fillRow(5, ClickableItem.empty(ItemManager.White_Stained_Glass_Pane));
 
         //나가기 버튼 처리
-        contents.set(5, 8, ClickableItem.of(ItemManager.Guide_Sign, e -> {
-            if(e.isLeftClick()) {
-                player.closeInventory();
-            }
-        }));
-
-        contents.set(5,7,ClickableItem.of(new ItemStack(Material.CHEST), e-> {
-            if(e.isLeftClick()) {
-                dm.print_ArrayList();
-            }
-        }));
+        contents.set(5, 8, ClickableItem.empty(ItemManager.FirstGame_Guide_Sign));
 
         for(int x = 0; x < 8; x++) {
             //7줄 처리
@@ -71,24 +53,24 @@ public class SecondGameInventoryManager implements fr.minuskube.inv.content.Inve
                 Random random = new Random();
                 switch (random.nextInt(5) + 1) {
                     case 1:
-                        contents.set(1, x + 1, ClickableItem.empty(Glass));
-                        dm.add_ArrayList(player, Glass.getType().toString());
+                        contents.set(1, x + 1, ClickableItem.empty(ItemManager.Glass));
+                        dm.add_ArrayList(player, ItemManager.Glass.getType().toString());
                         break;
                     case 2:
-                        contents.set(1, x + 1, ClickableItem.empty(Grass));
-                        dm.add_ArrayList(player, Grass.getType().toString());
+                        contents.set(1, x + 1, ClickableItem.empty(ItemManager.Grass));
+                        dm.add_ArrayList(player, ItemManager.Grass.getType().toString());
                         break;
                     case 3:
-                        contents.set(1, x + 1, ClickableItem.empty(Stone));
-                        dm.add_ArrayList(player, Stone.getType().toString());
+                        contents.set(1, x + 1, ClickableItem.empty(ItemManager.Stone));
+                        dm.add_ArrayList(player, ItemManager.Stone.getType().toString());
                         break;
                     case 4:
-                        contents.set(1, x + 1, ClickableItem.empty(BedRock));
-                        dm.add_ArrayList(player, BedRock.getType().toString());
+                        contents.set(1, x + 1, ClickableItem.empty(ItemManager.BedRock));
+                        dm.add_ArrayList(player, ItemManager.BedRock.getType().toString());
                         break;
                     case 5:
-                        contents.set(1, x + 1, ClickableItem.empty(Oak_Log));
-                        dm.add_ArrayList(player, Oak_Log.getType().toString());
+                        contents.set(1, x + 1, ClickableItem.empty(ItemManager.Oak_Log));
+                        dm.add_ArrayList(player, ItemManager.Oak_Log.getType().toString());
                         break;
                 }
             }
@@ -96,30 +78,30 @@ public class SecondGameInventoryManager implements fr.minuskube.inv.content.Inve
         }
 
         //눌러야하는 칸 처리
-        contents.set(3, 2, ClickableItem.of(new ItemStack(Material.GLASS), e -> {
+        contents.set(3, 2, ClickableItem.of(ItemManager.Glass, e -> {
             if(e.isLeftClick()) {
-                control_MainGame_Class(player, Glass.getType(), contents);
+                control_MainGame_Class(player, ItemManager.Glass.getType(), contents);
             }
                 }));
-        contents.set(3, 3, ClickableItem.of(new ItemStack(Material.GRASS_BLOCK), e -> {
+        contents.set(3, 3, ClickableItem.of(ItemManager.Grass, e -> {
             if(e.isLeftClick()) {
-                control_MainGame_Class(player, Grass.getType(), contents);
+                control_MainGame_Class(player, ItemManager.Grass.getType(), contents);
             }
         }));
-        contents.set(3,4,ClickableItem.of(new ItemStack(Material.BEDROCK), e-> {
+        contents.set(3,4,ClickableItem.of(ItemManager.BedRock, e-> {
             if(e.isLeftClick()) {
-                control_MainGame_Class(player, BedRock.getType(), contents);
+                control_MainGame_Class(player, ItemManager.BedRock.getType(), contents);
             }
 
         }));
-        contents.set(3, 5, ClickableItem.of(new ItemStack(Material.STONE), e -> {
+        contents.set(3, 5, ClickableItem.of(ItemManager.Stone, e -> {
             if(e.isLeftClick()) {
-                control_MainGame_Class(player, Stone.getType(), contents);
+                control_MainGame_Class(player, ItemManager.Stone.getType(), contents);
             }
         }));
-        contents.set(3, 6, ClickableItem.of(new ItemStack(Material.OAK_LOG), e -> {
+        contents.set(3, 6, ClickableItem.of(ItemManager.Oak_Log, e -> {
             if(e.isLeftClick()) {
-                control_MainGame_Class(player, Oak_Log.getType(), contents);
+                control_MainGame_Class(player, ItemManager.Oak_Log.getType(), contents);
             }
         }));
 
