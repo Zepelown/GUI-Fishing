@@ -7,7 +7,6 @@ This Plugin is using SmartInvsAPI (https://github.com/MinusKube/SmartInvs)
 To run it without problem, please install SmartInvs  
 
 아직 언어는 한국어밖에 지원하지않습니다.  
-
 The plugin only supports Korean  
 
 검은사막 낚시 게임을 참고하여 만들었습니다.  
