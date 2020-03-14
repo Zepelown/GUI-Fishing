@@ -1,7 +1,7 @@
 # GUI-Fishing
-이 플러그인은 SmartInvsAPI를 사용하고 있습니다.
+이 플러그인은 SmartInvsAPI를 사용하고 있습니다.  
+This Plugin is using SmartInvsAPI (https://github.com/MinusKube/SmartInvs)
 
-This Plugin is using SmartInvsAPI (https://github.com/MinusKube/SmartInvs)  
 
 따라서 사용 시 SmartInvs를 설치해주셔야합니다.  
 To run it without problem, please install SmartInvs  
