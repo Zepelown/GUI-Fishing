@@ -11,7 +11,7 @@ To run it without problem, please install SmartInvs
 The plugin only supports Korean  
 
 검은사막 낚시 게임을 참고하여 만들었습니다.  
-I referred to Fishing in BlackDesert, When making the plugin.
+I referred to fishing in BlackDesert, When making the plugin.
 
 
 [![Video Label](http://img.youtube.com/vi/L-09R3DrI2U/0.jpg)](https://youtu.be/L-09R3DrI2U)
