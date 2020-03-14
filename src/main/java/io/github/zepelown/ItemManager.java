@@ -36,10 +36,10 @@ public class ItemManager {
             Material.SALMON, 1, Arrays.asList("")));
 
     public static ItemStack FirstGame_Guide_Sign = new ItemStack(set_item(ChatColor.GREEN + "도움말", Material.OAK_SIGN, 1,
-            Arrays.asList(ChatColor.GRAY + "노란색 게이지가 물고기 선을 넘어갈 때 낚싯대를 클릭하시면 됩니다!!",
+            Arrays.asList(ChatColor.GRAY + "노란색 게이지가 물고기 칸을 넘어갈 때 낚싯대를 클릭하시면 됩니다!!",
                     ChatColor.GRAY + "총 게이지는 두 번 왔다 갔다 합니다.")));
     public static ItemStack SecondGame_Guide_Sign = new ItemStack(set_item(ChatColor.YELLOW + "도움말", Material.OAK_SIGN, 1,
-            Arrays.asList(ChatColor.GRAY + "목표 칸에 알맞는 순서대로 블럭을 클릭하셔야합니다!",
+            Arrays.asList(ChatColor.GRAY + "왼쪽 칸부터 알맞는 순서대로 블럭을 클릭하셔야합니다!",
                     ChatColor.RED + "밑에 빨간색이 끝까지 차면 끝이 나니 조심하세요!")));
     public static ItemStack Result_Guid_Sign = new ItemStack(set_item(ChatColor.YELLOW + "도움말", Material.OAK_SIGN, 1,
             Arrays.asList(ChatColor.RED + "ESC 등으로 인벤토리를 강제 종료할 시 아이템이 사라집니다!!!!!!")));

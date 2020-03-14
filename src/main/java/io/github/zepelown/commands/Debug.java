@@ -3,6 +3,7 @@ package io.github.zepelown.commands;
 import io.github.zepelown.GameData.FirstGameDataManager;
 import io.github.zepelown.GameData.SecondGameDataManager;
 import io.github.zepelown.event.FishingEvent;
+import io.github.zepelown.main.Main;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -31,11 +32,11 @@ public class Debug implements CommandExecutor {
                         fe.print_Hooked_fish();
                         return true;
                     } else
-                        player.sendMessage("올바르지않은 명령어입니다.");
+                        player.sendMessage(Main.prefix + "올바르지않은 명령어입니다.");
                 } else
-                    player.sendMessage("올바르지않은 명령어입니다.");
+                    player.sendMessage(Main.prefix + "올바르지않은 명령어입니다.");
             } else
-                player.sendMessage("오피만 사용가능한 명령어 입니다.");
+                player.sendMessage(Main.prefix + "오피만 사용가능한 명령어 입니다.");
             return false;
         } else {
             if(args.length != 0) {
@@ -50,9 +51,9 @@ public class Debug implements CommandExecutor {
                     fe.print_Hooked_fish();
                     return true;
                 } else
-                    System.out.println("올바르지않은 명령어입니다.");
+                    System.out.println(Main.prefix + "올바르지않은 명령어입니다.");
             } else
-                System.out.println("올바르지않은 명령어입니다.");
+                System.out.println(Main.prefix + "올바르지않은 명령어입니다.");
         }
         return false;
     }
