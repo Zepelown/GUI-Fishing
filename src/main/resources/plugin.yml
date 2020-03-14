@@ -1,4 +1,4 @@
-name: FishingMiniGame
+name: GUIFishing
 version: ${project.version}
 main: io.github.zepelown.main.Main
 api-version: 1.13
