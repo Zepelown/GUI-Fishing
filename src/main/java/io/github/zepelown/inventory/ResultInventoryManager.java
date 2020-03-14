@@ -16,7 +16,7 @@ public class ResultInventoryManager implements fr.minuskube.inv.content.Inventor
 
     @Override
     public void init(Player player, InventoryContents contents) {
-        contents.set(0,0, ClickableItem.empty(new ItemStack(Material.OAK_SIGN)));
+        contents.set(0,0, ClickableItem.empty(ItemManager.Result_Guid_Sign));
         contents.set(0,4, ClickableItem.empty(fe.get_Hooked_fish(player)));
 
         contents.set(1,5,ClickableItem.of(ItemManager.FISHING_ROD, e->{
