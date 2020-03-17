@@ -3,8 +3,7 @@ package io.github.zepelown.guifish.inventory;
 import fr.minuskube.inv.InventoryListener;
 import fr.minuskube.inv.SmartInventory;
 import io.github.zepelown.guifish.GUIFish;
-import io.github.zepelown.guifish.gamedata.SecondGameDataManager;
-import io.github.zepelown.guifish.handlers.FishHandler;
+import io.github.zepelown.guifish.gamedata.GameManager;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryCloseEvent;
@@ -14,7 +13,7 @@ public class Inventories {
 
 	public static final SmartInventory FIRST_GAME_INVENTORY = SmartInventory.builder()
 			.id("FirstGame")
-			.provider(new FirstGameInventoryManager())
+			.provider(FirstGameManager.instance)
 			.size(3, 9)
 			.title(ChatColor.DARK_AQUA + "물고기가 미끼를 물려고 합니다!!!")
 			.closeable(true)
@@ -22,30 +21,25 @@ public class Inventories {
 			.build();
 	public static final SmartInventory SECOND_GAME_INVENTORY = SmartInventory.builder()
 			.id("SecondGame")
-			.provider(new SecondGameInventoryManager())
+			.provider(SecondGameManager.instance)
 			.size(6, 9)
 			.title(ChatColor.DARK_AQUA + "물고기가 날뜁니다!")
 			.listener(new InventoryListener<>(InventoryCloseEvent.class, (e) -> {
-				Player player = (Player) e.getPlayer();
-
-				SecondGameDataManager.clear_game_data(player);
-				player.sendMessage(GUIFish.prefix + "게임이 끝났습니다.");
-				//보상
-				if (SecondGameDataManager.check_InGame(player)) {
-					player.sendMessage(GUIFish.prefix + "물고기를 잡았습니다!");
-				} else {
-					player.sendMessage(GUIFish.prefix + "물고기를 잡는데 실패했습니다!");
-					FishHandler.removeHookedFish(player);
-				}
+				e.getPlayer().sendMessage(GUIFish.prefix + "게임이 끝났습니다.");
 			}))
 			.closeable(true)
 			.manager(GUIFish.getPlugin().inventoryManager)
 			.build();
 	public static final SmartInventory RESULT_INVENTORY = SmartInventory.builder()
 			.id("ResultInventory")
-			.provider(new ResultInventoryManager())
+			.provider(ResultGUIManager.instance)
 			.size(2, 9)
 			.title(ChatColor.DARK_AQUA + "결과")
+			.listener(new InventoryListener<>(InventoryCloseEvent.class, e -> {
+				if (e.getPlayer() instanceof Player) {
+					GameManager.finishGame((Player) e.getPlayer());
+				}
+			}))
 			.closeable(true)
 			.manager(GUIFish.getPlugin().inventoryManager)
 			.build();

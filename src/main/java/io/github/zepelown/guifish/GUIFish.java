@@ -2,7 +2,7 @@ package io.github.zepelown.guifish;
 
 import fr.minuskube.inv.InventoryManager;
 import io.github.zepelown.guifish.commands.DebugCommand;
-import io.github.zepelown.guifish.handlers.FishHandler;
+import io.github.zepelown.guifish.gamedata.GameManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -24,7 +24,7 @@ public final class GUIFish extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		inventoryManager.init();
-		Bukkit.getPluginManager().registerEvents(FishHandler.instance, this);
+		Bukkit.getPluginManager().registerEvents(GameManager.instance, this);
 		Bukkit.getPluginCommand("gfdebug").setExecutor(DebugCommand.instance);
 	}
 

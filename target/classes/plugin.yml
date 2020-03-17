@@ -1,5 +1,5 @@
 name: GUIFishing
-version: 1.1.1
+version: 1.2.0
 main: io.github.zepelown.guifish.GUIFish
 api-version: 1.13
 commands:

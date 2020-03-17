@@ -1,4 +1,4 @@
-package io.github.zepelown.guifish;
+package io.github.zepelown.guifish.inventory;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
