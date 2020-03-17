@@ -1,6 +1,6 @@
 package io.github.zepelown.guifish.handlers;
 
-import io.github.zepelown.guifish.gamedata.FirstGameDataManager;
+import io.github.zepelown.guifish.gamedata.GameManager;
 import io.github.zepelown.guifish.inventory.Inventories;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
@@ -44,8 +44,7 @@ public class FishHandler implements Listener {
 			Player player = e.getPlayer();
 			ItemStack hookedFish = ((Item) e.getCaught()).getItemStack();
 
-			FirstGameDataManager.set_direction(player, "right");
-			FirstGameDataManager.set_end_count(player, 0);
+			GameManager.startGame(player);
 			hookedFishes.put(player, hookedFish);
 			Inventories.FIRST_GAME_INVENTORY.open(player);
 			e.setCancelled(true);

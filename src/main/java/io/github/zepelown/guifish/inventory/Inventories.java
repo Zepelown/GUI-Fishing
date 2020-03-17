@@ -3,7 +3,6 @@ package io.github.zepelown.guifish.inventory;
 import fr.minuskube.inv.InventoryListener;
 import fr.minuskube.inv.SmartInventory;
 import io.github.zepelown.guifish.GUIFish;
-import io.github.zepelown.guifish.gamedata.FirstGameDataManager;
 import io.github.zepelown.guifish.gamedata.SecondGameDataManager;
 import io.github.zepelown.guifish.handlers.FishHandler;
 import org.bukkit.ChatColor;
@@ -18,15 +17,6 @@ public class Inventories {
 			.provider(new FirstGameInventoryManager())
 			.size(3, 9)
 			.title(ChatColor.DARK_AQUA + "물고기가 미끼를 물려고 합니다!!!")
-			.listener(new InventoryListener<>(InventoryCloseEvent.class, (e) -> {
-				Player player = (Player) e.getPlayer();
-				if (FirstGameDataManager.get_win_game(player)) {
-					player.sendMessage(GUIFish.prefix + "물고기가 잡히지 않을려고 날뜁니다!");
-				} else {
-					FishHandler.removeHookedFish(player);
-				}
-				FirstGameDataManager.clean_all_first_data(player);
-			}))
 			.closeable(true)
 			.manager(GUIFish.getPlugin().inventoryManager)
 			.build();
