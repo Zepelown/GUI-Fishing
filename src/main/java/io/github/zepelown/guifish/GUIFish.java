@@ -11,15 +11,14 @@ public final class GUIFish extends JavaPlugin {
 
 	public static final String prefix = ChatColor.GRAY + "[" + ChatColor.BLUE + "GUIFishing" + ChatColor.GRAY + "] " + ChatColor.WHITE;
 	private static GUIFish plugin;
-
-	public static GUIFish getPlugin() {
-		return plugin;
-	}
-
 	public final InventoryManager inventoryManager = new InventoryManager(this);
 
 	public GUIFish() {
 		GUIFish.plugin = this;
+	}
+
+	public static GUIFish getPlugin() {
+		return plugin;
 	}
 
 	@Override

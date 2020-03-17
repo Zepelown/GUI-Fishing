@@ -10,11 +10,11 @@ import java.util.Map;
 
 public class SecondGameDataManager {
 
-    private SecondGameDataManager() {}
-
 	private static final Map<Player, Integer> end_count = new HashMap<>();
 	private static final List<HashMap<Player, String>> current_item_list = new ArrayList<>();
 	private static final Map<Player, Boolean> InGame = new HashMap<>();
+	private SecondGameDataManager() {
+	}
 
 	public static void add_ArrayList(Player p, String s) {
 		HashMap<Player, String> temp = new HashMap<>();
@@ -78,9 +78,7 @@ public class SecondGameDataManager {
 	}
 
 	public static void clear_game_data(Player p) {
-		if (end_count.containsKey(p)) {
-			end_count.remove(p);
-		}
+		end_count.remove(p);
 
 		current_item_list.removeIf(map -> map.containsKey(p));
 	}

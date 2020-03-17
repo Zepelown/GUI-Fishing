@@ -7,11 +7,11 @@ import java.util.Map;
 
 public class FirstGameDataManager {
 
-	private FirstGameDataManager() {}
-
 	private static final Map<Player, Integer> end_count_hashmap = new HashMap<>();
 	private static final Map<Player, String> direction = new HashMap<>();
 	private static final Map<Player, Boolean> win_game = new HashMap<>();
+	private FirstGameDataManager() {
+	}
 
 	public static void add_end_count(Player player) {
 		int end_count = end_count_hashmap.get(player);

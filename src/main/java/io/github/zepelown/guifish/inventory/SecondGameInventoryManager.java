@@ -31,7 +31,7 @@ public class SecondGameInventoryManager implements fr.minuskube.inv.content.Inve
 		contents.fillRow(5, ClickableItem.empty(Items.WHITE_STAINED_GLASS_PANE));
 
 		//나가기 버튼 처리
-		contents.set(5, 8, ClickableItem.empty(Items.FIRST_GAME_GUIDE_SIGN));
+		contents.set(5, 8, ClickableItem.empty(Items.SECOND_GAME_GUIDE_SIGN));
 
 		for (int x = 0; x < 8; x++) {
 			//7줄 처리

@@ -20,6 +20,9 @@ public class FishHandler implements Listener {
 	public static final FishHandler instance = new FishHandler();
 	private static final Map<Player, ItemStack> hookedFishes = new HashMap<>();
 
+	private FishHandler() {
+	}
+
 	public static ItemStack getHookedFish(Player p) {
 		return hookedFishes.get(p);
 	}
@@ -34,8 +37,6 @@ public class FishHandler implements Listener {
 			System.out.println("플레이어 : " + mapkey + " 값 : " + hookedFishes.get(mapkey));
 		System.out.println("----------------------");
 	}
-
-	private FishHandler() {}
 
 	@EventHandler
 	private void PlayerFishingEvent(PlayerFishEvent e) {
