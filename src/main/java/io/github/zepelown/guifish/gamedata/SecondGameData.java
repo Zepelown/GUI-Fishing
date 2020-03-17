@@ -12,6 +12,8 @@ public class SecondGameData implements Debuggable {
 	private static final Random random = new Random();
 	private static final Material[] usedMaterials = { Material.GLASS, Material.GRASS_BLOCK, Material.STONE, Material.OAK_LOG, Material.BEDROCK };
 
+	SecondGameData() {}
+
 	private final LinkedList<Material> materials = new LinkedList<Material>() {
 		{
 			for (int i = 0; i < 7; i++) {

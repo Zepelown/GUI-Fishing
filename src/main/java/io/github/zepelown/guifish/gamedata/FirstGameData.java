@@ -8,6 +8,8 @@ public class FirstGameData implements Debuggable {
 
 	private static final Random random = new Random();
 
+	FirstGameData() {}
+
 	private int difficulty = random.nextInt(3) + 1;
 	private int endCount = 0;
 	private Direction direction = Direction.RIGHT;
