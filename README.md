@@ -13,4 +13,4 @@ The plugin only supports Korean
 I referred to fishing in BlackDesert, When making the plugin.
 
 
-[![Video Label](http://img.youtube.com/vi/3h68xdyjkJo/0.jpg](https:/youtu.be/3h68xdyjkJo)
+[![Video Label](http://img.youtube.com/vi/3h68xdyjkJo/0.jpg)](https:/youtu.be/3h68xdyjkJo)
